@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="File di origine">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Note Series.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Note SeriesDoc.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Note SeriesView.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="LeftView.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CDbConn.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CLanguage.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgOptions.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgVersioni.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CUpgrade.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgCartella.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgDate.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgCategorie.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPrimoAvvio.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgRiconoscimenti.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CAggMod.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="CMyRibbonPanel.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Note Series.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Note SeriesDoc.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="Note SeriesView.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="LeftView.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CDbConn.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CLanguage.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgOptions.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgVersioni.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CUpgrade.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgCartella.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgDate.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgCategorie.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPrimoAvvio.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgRiconoscimenti.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CAggMod.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="CMyRibbonPanel.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NoteSeries.rc">
+      <Filter>File di risorse</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\buttons.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\filelarge.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\filesmall.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\main.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\writelarge.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\writesmall.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Note SeriesDoc.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Note Series.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Toolbar.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Toolbar256.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Add.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Del.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Res.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Save.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Start.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\Fine.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\folder.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\filelarge.png">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\icon5.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\NoteSeries.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="res\exe.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ribbon.mfcribbon-ms">
+      <Filter>File di risorse</Filter>
+    </None>
+    <None Include="res\NoteSeries.rc2">
+      <Filter>File di risorse</Filter>
+    </None>
+    <None Include="res\ribbon1.mfcribbon-ms">
+      <Filter>File di risorse</Filter>
+    </None>
+  </ItemGroup>
+</Project>
