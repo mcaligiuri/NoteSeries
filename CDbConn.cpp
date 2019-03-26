@@ -63,7 +63,7 @@ BOOL CDbConn::SetSerie(CString query)
 	catch (CDBException* e)
 	{
 		AfxMessageBox((m_currlang.GetDesc(75, temp))); // Errore
-		//AfxMessageBox(_T("Database error: ") + e->m_strError);
+		AfxMessageBox(_T("Database error: ") + e->m_strError);
 		serie->Close();
 		return FALSE;
 	}
