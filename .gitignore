@@ -329,9 +329,9 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 /versione.txt
-/PredictedInputCache_Release_x86.dat
-/PredictedInputCache_Debug_x86.dat
-/NoteSeries.aps
-/NSUPADATE.exe
-/archivi/serie-barber.mdb
-/archivi/backup_serie.mdb
+PredictedInputCache_Release_x86.dat
+PredictedInputCache_Debug_x86.dat
+NoteSeries.aps
+NSUPADATE.exe
+archivi/serie-barber.mdb
+archivi/backup_serie.mdb
