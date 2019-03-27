@@ -122,7 +122,8 @@ BOOL CAggMod::OnInitDialog()
 	SetIcons();
 	this->SetBackgroundColor(RGB(255, 255, 255), 1);
 	GetDescUpdate();
-
+	// Evito glitch grafico
+	m_dlgsimbolo.OnChangeLayout();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // ECCEZIONE: le pagine delle proprietà OCX devono restituire FALSE
