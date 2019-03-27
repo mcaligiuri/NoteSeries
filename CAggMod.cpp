@@ -398,9 +398,16 @@ void CAggMod::AggiungiSerie()
 
 		m_dlgcom.GetWindowText(pDoc->m_com);
 		m_dlgsimbolo.GetWindowText(pDoc->m_bmp);
-		m_dlgcartella.GetWindowText(pDoc->m_cartella);
+		if (m_dlgChkCartella.GetCheck())
+		{
+			m_dlgcartella.GetWindowText(pDoc->m_cartella);
+			if (pDoc->m_cartella != _T(""))
+				GetCartella();
+		}
+		else
+			pDoc->m_cartella = _T("");
+		
 		m_dlgsito.GetWindowText(pDoc->m_sito);
-
 		// Controllo apici singoli nel nome e nel commento per sql
 		if (pDoc->m_nome.Find(L"'") != -1 || pDoc->m_com.Find(L"'") != -1)
 		{
@@ -419,9 +426,6 @@ void CAggMod::AggiungiSerie()
 
 		if (pDoc->m_bmp != _T(""))
 			pView->GetLogo();
-
-		if (pDoc->m_cartella != _T("") && m_dlgChkCartella.GetCheck())
-			GetCartella();
 
 		// Posizione delle combobox
 		short m_sel = m_dlgstato.GetCurSel();
