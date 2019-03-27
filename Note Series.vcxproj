@@ -194,6 +194,7 @@
     <ClInclude Include="DlgCartella.h" />
     <ClInclude Include="DlgCategorie.h" />
     <ClInclude Include="DlgDate.h" />
+    <ClInclude Include="DlgGruppi.h" />
     <ClInclude Include="DlgOptions.h" />
     <ClInclude Include="DlgPrimoAvvio.h" />
     <ClInclude Include="DlgRiconoscimenti.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="DlgCartella.cpp" />
     <ClCompile Include="DlgCategorie.cpp" />
     <ClCompile Include="DlgDate.cpp" />
+    <ClCompile Include="DlgGruppi.cpp" />
     <ClCompile Include="DlgOptions.cpp" />
     <ClCompile Include="DlgPrimoAvvio.cpp" />
     <ClCompile Include="DlgRiconoscimenti.cpp" />
