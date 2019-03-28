@@ -473,3 +473,28 @@ int CDbConn::ContaOmonimi(CString nome, CString tabella, short cat)
 
 	return count;
 }
+
+void CDbConn::GetGruppi(CArray<CString, CString> *pStruct)
+{
+	dbopen();
+	try
+	{
+		CString sql,temp = _T("");
+		sql.Format(_T("SELECT NOME FROM [ETICHETTE]"));
+		CRecordset righe(serie);
+		righe.Open(CRecordset::forwardOnly, sql);
+		while (!righe.IsEOF())
+		{
+			righe.GetFieldValue(L"NOME", temp);
+			pStruct->Add(temp);
+			righe.MoveNext();
+		}
+		righe.Close();
+		serie->Close();
+	}
+	catch (CDBException* e)
+	{
+		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		return;
+	}
+}
