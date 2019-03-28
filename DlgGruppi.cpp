@@ -100,4 +100,5 @@ void DlgGruppi::SetEtichetta()
 		return;
 	
 	m_nomi.Add(lbl);
+	m_cmbLabel.AddString(m_nomi.GetAt(m_nomi.GetCount()-1));
 }
