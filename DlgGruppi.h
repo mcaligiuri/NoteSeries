@@ -18,10 +18,8 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // Supporto DDX/DDV
-
 	DECLARE_MESSAGE_MAP()
 private:
-	
 	CMFCButton m_btnAdd;	// Bottone per creare una label
 	CMFCButton m_btnDel;	// Bottone per eliminare un'etichetta
 	CComboBox m_cmbLabel;	// Combobox con le label
@@ -33,7 +31,10 @@ private:
 	CListCtrl m_lstAss;		// Lista nomi associati
 public:
 	CString m_temp;			// Ritorno per la GetDesc
+	CString m_sql;			// Per le query SQL
 	short m_rows;			// Numero di righe
 public:
 	virtual BOOL OnInitDialog();
+	afx_msg void SetEtichetta();
+	CArray<CString, CString>m_nomi;	// Lista nomi
 };
