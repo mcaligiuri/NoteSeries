@@ -18,6 +18,7 @@ public:
 	void GetCategoria(CTabCtrl* schede, TCITEM elem);
 	void GetIDCategoria(CString *nometab, CEdit* control);
 	int ContaOmonimi(CString nome, CString tabella, short categoria);
+	void GetGruppi(CArray<CString, CString> *pStruct);
 	short m_riga;
 	CDatabase* serie;
 	CDatabase language;
