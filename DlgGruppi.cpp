@@ -41,6 +41,7 @@ void DlgGruppi::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(DlgGruppi, CDialogEx)
 	ON_BN_CLICKED(IDC_BTNADD, &DlgGruppi::SetEtichetta)
+	ON_BN_CLICKED(IDC_BTNDEL, &DlgGruppi::DelEtichetta)
 END_MESSAGE_MAP()
 
 
@@ -101,4 +102,19 @@ void DlgGruppi::SetEtichetta()
 	
 	m_nomi.Add(lbl);
 	m_cmbLabel.AddString(m_nomi.GetAt(m_nomi.GetCount()-1));
+}
+
+// Elimino un'etichetta
+void DlgGruppi::DelEtichetta()
+{
+	CString buf, msg = _T("");
+	m_cmbLabel.GetWindowTextW(buf);
+	msg.Format(_T("Vuoi davvero eliminare l'etichetta: %s"), buf);
+	if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDNO)
+		return;
+	
+	m_sql.Format(_T("DELETE FROM [ETICHETTE] WHERE NOME='%s'"),buf);
+	if (!dbconfig.SetSerie(m_sql))
+		return;
+	m_cmbLabel.DeleteString(m_cmbLabel.GetCurSel());
 }
