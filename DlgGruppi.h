@@ -37,4 +37,5 @@ public:
 	virtual BOOL OnInitDialog();
 	afx_msg void SetEtichetta();
 	CArray<CString, CString>m_nomi;	// Lista nomi
+	afx_msg void DelEtichetta();
 };
