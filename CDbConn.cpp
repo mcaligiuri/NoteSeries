@@ -479,14 +479,15 @@ void CDbConn::GetGruppi(CArray<CString, CString> *pStruct)
 	dbopen();
 	try
 	{
-		CString sql,temp = _T("");
-		sql.Format(_T("SELECT NOME FROM [ETICHETTE]"));
+		CString sql,id,nome,buf = _T("");
+		sql.Format(_T("SELECT * FROM [ETICHETTE]"));
 		CRecordset righe(serie);
 		righe.Open(CRecordset::forwardOnly, sql);
 		while (!righe.IsEOF())
 		{
-			righe.GetFieldValue(L"NOME", temp);
-			pStruct->Add(temp);
+			righe.GetFieldValue(L"NOME", nome);
+			righe.GetFieldValue(L"IDL", id);
+			pStruct->Add(id + L"° " + nome);
 			righe.MoveNext();
 		}
 		righe.Close();
