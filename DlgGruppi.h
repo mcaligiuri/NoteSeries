@@ -32,10 +32,20 @@ private:
 public:
 	CString m_temp;			// Ritorno per la GetDesc
 	CString m_sql;			// Per le query SQL
+	CString m_explode;
+	CString m_selNome;		// Nome elemento selezionato
+	int m_pos;
 	short m_rows;			// Numero di righe
+	short m_id;				// ID label
 public:
 	virtual BOOL OnInitDialog();
 	afx_msg void SetEtichetta();
 	CArray<CString, CString>m_nomi;	// Lista nomi
 	afx_msg void DelEtichetta();
+private:
+	// Id di una label
+	CEdit m_txtId;
+public:
+	afx_msg void OnCambioLabel();
+	afx_msg void OnSetAssoc();
 };
