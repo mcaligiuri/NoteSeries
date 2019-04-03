@@ -24,12 +24,10 @@ public:
 	CDatabase language;
 	CString m_dbserie, m_dblang;
 	CString m_dbfSerie, m_dbfLang;
-	HTREEITEM hRoot;
 	CRegKey chiave;
 	CString retUser;
 	CString temp;
 	CString m_cat;
 	CString m_idcat;
 	CString m_dbPass;
-	CButton* test;
 };
