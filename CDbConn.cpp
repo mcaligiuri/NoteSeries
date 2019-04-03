@@ -32,9 +32,9 @@ BOOL CDbConn::dbopen()
 	{
 		ULONG len = 255;
 		chiave.QueryStringValue((_T("SharedMDB")), retUser.GetBufferSetLength(len), &len);
-		m_dbfSerie.Format(_T("%s/serie.mdb"), retUser);
+		m_dbfSerie.Format(_T("%s//serie.mdb"), retUser.GetString());
 	}
-	m_dbserie.Format(_T("ODBC;DRIVER={%s};DSN='';DBQ=%s;PWD=%s"), _T("MICROSOFT ACCESS DRIVER (*.mdb)"), m_dbfSerie, m_dbPass);
+	m_dbserie.Format(_T("ODBC;DRIVER={%s};DSN='';DBQ=%s;PWD=%s"), _T("MICROSOFT ACCESS DRIVER (*.mdb)"), m_dbfSerie.GetString(), m_dbPass.GetString());
 	try
 	{
 		if (!serie->Open(NULL, FALSE, FALSE, m_dbserie))
@@ -418,12 +418,12 @@ void CDbConn::GetIDCategoria(CString *nometab, CEdit* control)
 {
 	CString query = _T("");
 	CString id = _T("");
-
+	CString tab = _T("");
 	// Controllo apici singoli per SQL
 	if (nometab->Find(L"'") != -1)
 		nometab->Replace(L"'", L"''");
-
-	query.Format(_T("SELECT IDCAT FROM [CATEGORIE] WHERE NOMECAT='%s'"),*nometab);
+	tab = *nometab;
+	query.Format(_T("SELECT IDCAT FROM [CATEGORIE] WHERE NOMECAT='%s'"),tab.GetString());
 	dbopen();
 	try
 	{
@@ -450,7 +450,7 @@ int CDbConn::ContaOmonimi(CString nome, CString tabella, short cat)
 	int count = 0;
 	CString sql = _T("");
 
-	sql.Format(_T("SELECT nome FROM %s WHERE IDCAT=%d AND nome='%s'"),tabella,cat,nome);
+	sql.Format(_T("SELECT nome FROM %s WHERE IDCAT=%d AND nome='%s'"),tabella.GetString(),cat,nome.GetString());
 
 	dbopen();
 	try
