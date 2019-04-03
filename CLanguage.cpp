@@ -23,11 +23,11 @@ BOOL CLanguage::dbopen()
 	{
 		ULONG len = 255;
 		chiave.QueryStringValue((_T("SharedMDB")), retUser.GetBufferSetLength(len), &len);
-		m_dbfLang.Format(_T("%s/language.mdb"), retUser);
+		m_dbfLang.Format(_T("%s/language.mdb"), retUser.GetString());
 	}
 	try
 	{
-		m_db.Format(_T("ODBC;DRIVER={%s};DSN='';DBQ=%s;PWD=%s"), _T("MICROSOFT ACCESS DRIVER (*.mdb)"), m_dbfLang, m_dbPass);
+		m_db.Format(_T("ODBC;DRIVER={%s};DSN='';DBQ=%s;PWD=%s"), _T("MICROSOFT ACCESS DRIVER (*.mdb)"), m_dbfLang.GetString(), m_dbPass.GetString());
 		if (!language.Open(NULL, FALSE, FALSE, m_db))
 			return FALSE;
 	}
