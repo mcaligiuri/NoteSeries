@@ -16,6 +16,7 @@ CDbConn::CDbConn()
 	m_dbPass = _T("Daniela_Serie");
 	m_riga = 0;
 	serie = new CDatabase;
+	pDoc = nullptr;
 }
 
 
@@ -72,11 +73,8 @@ BOOL CDbConn::SetSerie(CString query)
 // Funzione che ha il compito di aggiornare la griglia di output
 void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 {
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();
-	CNoteSeriesDoc* pDoc = pView->GetDocument();
+	pDoc = GetDoc();
 	long n = 0;
-	/*pList->SetRedraw(FALSE);*/
 	pList->DeleteAllItems();
 	if (!dbopen())
 		return;
@@ -85,7 +83,7 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 		CRecordset* righe = NULL;
 		righe = new CRecordset(serie);
 		righe->Open(CRecordset::snapshot, sql, CRecordset::readOnly);
-		
+		CString idl = _T("");
 		if (pDoc->m_tabella == _T("[anime]")) 
 		{
 			while (!righe->IsEOF())
@@ -98,7 +96,8 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				righe->GetFieldValue(L"commenti", pDoc->m_com);
 				righe->GetFieldValue(L"voto", pDoc->m_voto);
 				righe->GetFieldValue(L"stato", pDoc->m_stato);
-				
+				righe->GetFieldValue(L"IDL", idl);
+				pDoc->m_idl.Add(_wtoi(idl));
 
 				// Inserisco gli elementi nella griglia
 				n = pList->InsertItem(0, _T(""));
@@ -213,6 +212,7 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				pDoc->m_griglia[i].priorità = pList->GetItemText(i, 6);
 				pDoc->m_griglia[i].stato = pList->GetItemText(i, 7);
 				pDoc->m_griglia[i].commento = pList->GetItemText(i, 8);
+				pDoc->m_griglia[i].idl = pDoc->m_idl.GetAt(i);
 			}
 		}
 		else
@@ -224,6 +224,8 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				righe->GetFieldValue(L"commenti", pDoc->m_com);
 				righe->GetFieldValue(L"priorità", pDoc->m_priorita);
 				righe->GetFieldValue(L"stato", pDoc->m_stato);
+				righe->GetFieldValue(L"IDL", idl);
+				pDoc->m_idl.Add(_wtoi(idl));
 				
 				n = pList->InsertItem(0, _T(""));
 				pList->SetItemText(n, 0, pDoc->m_nome);
@@ -285,27 +287,20 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				pDoc->m_griglia[i].priorità = pList->GetItemText(i, 6);
 				pDoc->m_griglia[i].stato = pList->GetItemText(i, 7);
 				pDoc->m_griglia[i].commento = pList->GetItemText(i, 8);
+				pDoc->m_griglia[i].idl = pDoc->m_idl.GetAt(i);
 			}
 		}
 		righe->Close();
 		delete righe;
 		serie->Close();
-		/*pList->SetRedraw(TRUE);
-		pList->Invalidate();
-		pList->UpdateWindow();*/
 	}
-	catch (CDBException* e)
-	{
-		AfxMessageBox(_T("Database error: ") + e->m_strError);
-	}
+	catch (CDBException* e) { AfxMessageBox(_T("Database error: ") + e->m_strError); }
 }
 
 // Prendo i dati della seria selezionata in griglia
 void CDbConn::GetSerieCorrente(CString sql)
 {
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();
-	CNoteSeriesDoc* pDoc = pView->GetDocument();
+	pDoc = GetDoc();
 	if (!dbopen())
 		return;
 	try
@@ -347,8 +342,8 @@ void CDbConn::GetSerieCorrente(CString sql)
 	catch (CDBException* e)
 	{
 		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		serie->Close();
 	}
-	/*serie.Close();*/
 }
 
 // Visualizzo le versioni di database e dll memorizzati in una tabella
@@ -380,14 +375,13 @@ void CDbConn::GetVersioni(CString sql, CListCtrl* pList)
 	catch (CDBException* e)
 	{
 		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		serie->Close();
 	}
 }
 
 void CDbConn::GetCategoria(CTabCtrl *schede, /*CComboBox *cmbCat,*/ TCITEM elem)
 {
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();
-	CNoteSeriesDoc* pDoc = pView->GetDocument();
+	pDoc = GetDoc();
 	short i = 0;
 	dbopen();
 	try
@@ -410,6 +404,7 @@ void CDbConn::GetCategoria(CTabCtrl *schede, /*CComboBox *cmbCat,*/ TCITEM elem)
 	catch (CDBException* e)
 	{
 		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		serie->Close();
 	}
 }
 
@@ -441,6 +436,7 @@ void CDbConn::GetIDCategoria(CString *nometab, CEdit* control)
 	catch (CDBException* e)
 	{
 		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		serie->Close();
 	}
 
 }
@@ -468,6 +464,7 @@ int CDbConn::ContaOmonimi(CString nome, CString tabella, short cat)
 	catch (CDBException* e)
 	{
 		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		serie->Close();
 		return -1;
 	}
 
@@ -496,6 +493,16 @@ void CDbConn::GetGruppi(CArray<CString, CString> *pStruct)
 	catch (CDBException* e)
 	{
 		AfxMessageBox(_T("Database error: ") + e->m_strError);
+		serie->Close();
 		return;
 	}
+}
+
+CNoteSeriesDoc* CDbConn::GetDoc()
+{
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CNoteSeriesView* pView = (CNoteSeriesView*)pMain->GetActiveView();
+	CNoteSeriesDoc* pDoc = pView->GetDocument();
+
+	return pDoc;
 }
