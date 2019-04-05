@@ -1,5 +1,6 @@
 #include <afx.h>
 #include <afxdb.h>
+#include "Note SeriesDoc.h"
 #pragma once
 
 // Classe usata per la connessione al db "serie.mdb" 
@@ -19,6 +20,8 @@ public:
 	void GetIDCategoria(CString *nometab, CEdit* control);
 	int ContaOmonimi(CString nome, CString tabella, short categoria);
 	void GetGruppi(CArray<CString, CString> *pStruct);
+	CNoteSeriesDoc* GetDoc();
+	CNoteSeriesDoc* pDoc;
 	short m_riga;
 	CDatabase* serie;
 	CDatabase language;
