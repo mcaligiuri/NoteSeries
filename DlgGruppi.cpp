@@ -23,6 +23,7 @@ DlgGruppi::DlgGruppi(CWnd* pParent /*=nullptr*/)
 	m_id = 0;
 	m_rows = 0;
 	m_pos = 0;
+	pDoc = nullptr;
 }
 
 DlgGruppi::~DlgGruppi()
@@ -49,23 +50,17 @@ BEGIN_MESSAGE_MAP(DlgGruppi, CDialogEx)
 	ON_BN_CLICKED(IDC_BTNDEL, &DlgGruppi::DelEtichetta)
 	ON_CBN_SELCHANGE(IDC_CMBLABEL, &DlgGruppi::OnCambioLabel)
 	ON_BN_CLICKED(IDC_BTNASSOC, &DlgGruppi::OnSetAssoc)
+	ON_BN_CLICKED(IDC_BTNDISSOC, &DlgGruppi::OnDelAssoc)
 END_MESSAGE_MAP()
 
 
 BOOL DlgGruppi::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();
-	CNoteSeriesDoc* pDoc = pView->GetDocument();
+	pDoc = GetDoc();
 	// Imposto le colonne
 	m_lstNomi.InsertColumn(0, m_currlang.GetDesc(38, m_temp), LVCFMT_CENTER, 150);
-	
-	for (int i = 0; i < pDoc->m_gridCount; i++)
-	{
-		m_rows = m_lstNomi.InsertItem(i, _T(""));
-		m_lstNomi.SetItemText(m_rows, 0, pDoc->m_griglia[i].nome);
-	}
+	GetNomi();
 	m_lstAss.InsertColumn(0, m_currlang.GetDesc(38, m_temp), LVCFMT_CENTER, 150);
 
 	// Popolo combobx delle etichette
@@ -77,10 +72,23 @@ BOOL DlgGruppi::OnInitDialog()
 			
 
 	m_cmbLabel.SetCurSel(0);
-	OnCambioLabel();
 	return TRUE;
 }
 
+// Richiamo i nomi non associati ad un'etichetta
+void DlgGruppi::GetNomi()
+{
+	m_lstNomi.DeleteAllItems();
+	for (int i = 0; i < pDoc->m_gridCount; i++)
+	{
+		if (pDoc->m_griglia[i].idl == 0)
+		{
+			m_rows = m_lstNomi.InsertItem(i, _T(""));
+			m_lstNomi.SetItemText(m_rows, 0, pDoc->m_griglia[i].nome);
+		}
+	}
+	OnCambioLabel();
+}
 
 // Aggiungo un'etichetta
 void DlgGruppi::SetEtichetta()
@@ -105,7 +113,7 @@ void DlgGruppi::SetEtichetta()
 	if (end == lbl.GetLength() - 1)
 		lbl.Delete(end, lbl.GetLength() - 1);
 
-	m_sql.Format(_T("INSERT INTO [ETICHETTE](NOME) VALUES('%s')"),lbl);
+	m_sql.Format(_T("INSERT INTO [ETICHETTE](NOME) VALUES('%ws')"), lbl.GetString());
 	
 	if (!dbconfig.SetSerie(m_sql))
 		return;
@@ -119,11 +127,11 @@ void DlgGruppi::DelEtichetta()
 {
 	CString buf, msg = _T("");
 	m_cmbLabel.GetWindowTextW(buf);
-	msg.Format(_T("Vuoi davvero eliminare l'etichetta: %s"), buf);
+	msg.Format(_T("Vuoi davvero eliminare l'etichetta: %s"), buf.GetString());
 	if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDNO)
 		return;
 	
-	m_sql.Format(_T("DELETE FROM [ETICHETTE] WHERE NOME='%s'"),buf);
+	m_sql.Format(_T("DELETE FROM [ETICHETTE] WHERE NOME='%s'"), buf.GetString());
 	if (!dbconfig.SetSerie(m_sql))
 		return;
 	m_cmbLabel.DeleteString(m_cmbLabel.GetCurSel());
@@ -143,13 +151,67 @@ void DlgGruppi::OnCambioLabel()
 	id.Format(_T("%d"), m_id);
 	m_txtId.SetWindowTextW(id);
 	m_pos = 0;
+	pDoc = GetDoc();
+	m_lstAss.DeleteAllItems();
+	for (int i = 0; i < pDoc->m_gridCount; i++)
+	{
+		if (pDoc->m_griglia[i].idl == m_id)
+		{
+			m_rows = m_lstAss.InsertItem(i, _T(""));
+			m_lstAss.SetItemText(m_rows, 0, pDoc->m_griglia[i].nome);
+		}
+	}
 }
 
 // Associa nome selezionato ad un' etichetta
 void DlgGruppi::OnSetAssoc()
 {
+	pDoc = GetDoc();
 	int item = 0;
+	
 	POSITION pos = m_lstNomi.GetFirstSelectedItemPosition();
 	item = m_lstNomi.GetNextSelectedItem(pos);
+	if (item == -1)
+		return;
 	m_selNome = m_lstNomi.GetItemText(item, 0);
+	m_sql.Format(_T("UPDATE %s SET IDL=%d WHERE NOME='%s'"), pDoc->m_tabella.GetString(), m_id, m_selNome.GetString());
+	if (!dbconfig.SetSerie(m_sql))
+		return;
+	for (int i = 0; i < pDoc->m_gridCount; i++)
+	{
+		if (pDoc->m_griglia[i].nome == m_selNome)
+			pDoc->m_griglia[i].idl = m_id;
+	}
+	GetNomi();
+}
+
+// Dissocio un nome da un'etichetta
+void DlgGruppi::OnDelAssoc()
+{
+	pDoc = GetDoc();
+	int item = 0;
+
+	POSITION pos = m_lstAss.GetFirstSelectedItemPosition();
+	item = m_lstAss.GetNextSelectedItem(pos);
+	if (item == -1)
+		return;
+	m_selNome = m_lstAss.GetItemText(item, 0);
+	m_sql.Format(_T("UPDATE %s SET IDL=0 WHERE NOME='%s'"), pDoc->m_tabella.GetString(), m_selNome.GetString());
+	if (!dbconfig.SetSerie(m_sql))
+		return;
+	for (int i = 0; i < pDoc->m_gridCount; i++)
+	{
+		if (pDoc->m_griglia[i].nome == m_selNome)
+			pDoc->m_griglia[i].idl = 0;
+	}
+	GetNomi();
+}
+
+// Puntatore al documento
+CNoteSeriesDoc* DlgGruppi::GetDoc()
+{
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	CNoteSeriesView* pView = (CNoteSeriesView*)pMain->GetActiveView();
+	CNoteSeriesDoc* pDoc = pView->GetDocument();
+	return pDoc;
 }
