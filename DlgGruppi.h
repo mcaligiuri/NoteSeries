@@ -1,3 +1,4 @@
+#include "Note SeriesDoc.h"
 #pragma once
 
 
@@ -48,4 +49,8 @@ private:
 public:
 	afx_msg void OnCambioLabel();
 	afx_msg void OnSetAssoc();
+	afx_msg void OnDelAssoc();
+	void GetNomi();
+	CNoteSeriesDoc* GetDoc();
+	CNoteSeriesDoc* pDoc;
 };
