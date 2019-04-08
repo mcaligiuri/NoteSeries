@@ -201,11 +201,11 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 			// Memorizzo anche il numero di elementi
 			pDoc->m_gridCount = pList->GetItemCount();
 			pDoc->m_griglia = new CNoteSeriesDoc::Griglia[pDoc->m_gridCount];
+			// Copio invertito il CARRAY degli id, per farli coincidere coi nomi
 			CArray<int, int>idl;
 			for (int k = pDoc->m_gridCount; k > 0; k = k - 1)
-			{
 				idl.Add(pDoc->m_idl.GetAt(k));
-			}
+			
 			for (int i = 0; i < pList->GetItemCount(); i++)
 			{
 				pDoc->m_griglia[i].nome = pList->GetItemText(i, 0);
@@ -281,6 +281,9 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 			// Memorizzo anche il numero di elementi
 			pDoc->m_gridCount = pList->GetItemCount();
 			pDoc->m_griglia = new CNoteSeriesDoc::Griglia[pDoc->m_gridCount];
+			CArray<int, int>idl;
+			for (int k = pDoc->m_gridCount; k > 0; k = k - 1)
+				idl.Add(pDoc->m_idl.GetAt(k));
 			for (int i = 0; i < pList->GetItemCount(); i++)
 			{
 				pDoc->m_griglia[i].nome = pList->GetItemText(i, 0);
@@ -292,6 +295,7 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				pDoc->m_griglia[i].priorità = pList->GetItemText(i, 6);
 				pDoc->m_griglia[i].stato = pList->GetItemText(i, 7);
 				pDoc->m_griglia[i].commento = pList->GetItemText(i, 8);
+				pDoc->m_griglia[i].idl = idl.GetAt(i);
 			}
 		}
 		righe->Close();
@@ -389,7 +393,6 @@ void CDbConn::GetVersioni(CString sql, CListCtrl* pList)
 
 void CDbConn::GetCategoria(CTabCtrl *schede, /*CComboBox *cmbCat,*/ TCITEM elem)
 {
-	pDoc = GetDoc();
 	short i = 0;
 	dbopen();
 	try
