@@ -41,6 +41,7 @@ public:
 	CButton m_rdoViste;
 	CButton m_btnCopiaURL;
 	CStatic m_gprType;		// GroupBox con radio
+	CNoteSeriesDoc* pDoc;
 
 // Dati della finestra di dialogo
 #ifdef AFX_DESIGN_TIME
@@ -64,4 +65,5 @@ public:
 	void OnClickCopiaURL();
 	virtual void OnOK();
 	virtual void OnCancel();
+	CNoteSeriesDoc* GetDoc();
 };
