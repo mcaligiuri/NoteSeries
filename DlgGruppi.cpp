@@ -18,7 +18,6 @@ DlgGruppi::DlgGruppi(CWnd* pParent /*=nullptr*/)
 {
 	m_temp = _T("");
 	m_sql = _T("");
-	m_explode = _T("");
 	m_selNome = _T("");
 	m_id = 0;
 	m_rows = 0;
@@ -33,15 +32,22 @@ DlgGruppi::~DlgGruppi()
 void DlgGruppi::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	// Bottoni
 	DDX_Control(pDX, IDC_BTNADD, m_btnAdd);
 	DDX_Control(pDX, IDC_BTNDEL, m_btnDel);
-	DDX_Control(pDX, IDC_CMBLABEL, m_cmbLabel);
-	DDX_Control(pDX, IDC_TXTLABEL, m_txtAdd);
 	DDX_Control(pDX, IDC_BTNASSOC, m_btnAssoc);
 	DDX_Control(pDX, IDC_BTNDISSOC, m_btnDis);
+	// ComboBox, ListBox
+	DDX_Control(pDX, IDC_CMBLABEL, m_cmbLabel);
 	DDX_Control(pDX, IDC_LISTNOMI, m_lstNomi);
 	DDX_Control(pDX, IDC_LISTASS, m_lstAss);
+	// Caselle di testo
+	DDX_Control(pDX, IDC_TXTLABEL, m_txtAdd);
 	DDX_Control(pDX, IDC_TXTID, m_txtId);
+	// Label
+	DDX_Control(pDX, IDC_LBLSELETICHETTA, m_lblSel);
+	DDX_Control(pDX, IDC_LBLNOMI, m_lblnomi);
+	DDX_Control(pDX, IDC_LBLNOMIE, m_lblNomiE);
 }
 
 
@@ -58,23 +64,40 @@ BOOL DlgGruppi::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	pDoc = GetDoc();
+	pDoc->m_nodo = pDoc->m_artitoli.GetAt(0);
+	pDoc->UpdateAllViews(NULL);
 	// Imposto le colonne
 	m_lstNomi.InsertColumn(0, m_currlang.GetDesc(38, m_temp), LVCFMT_CENTER, 150);
-	GetNomi();
 	m_lstAss.InsertColumn(0, m_currlang.GetDesc(38, m_temp), LVCFMT_CENTER, 150);
 
 	// Popolo combobx delle etichette
-	m_nomi.RemoveAll();
-	dbconfig.GetGruppi(&m_nomi);
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 	m_pos = 0;
-	for (int j = 0; j < m_nomi.GetCount(); j++)
-		m_cmbLabel.AddString(m_nomi[j]);
-			
-
+	for (int j = 0; j < pMain->m_i; j++)
+		m_cmbLabel.AddString(pMain->m_lbl[j].nome);
+	
 	m_cmbLabel.SetCurSel(0);
+	GetNomi();
+	GetDescUpdate();
+	this->SetBackgroundColor(RGB(255, 255, 255), 1);
 	return TRUE;
 }
 
+// Descrizioni
+void DlgGruppi::GetDescUpdate()
+{
+	m_btnAdd.SetWindowTextW(pDoc->m_label.GetAt(4));
+	m_btnDel.SetWindowTextW(pDoc->m_label.GetAt(3));
+	m_lblSel.SetWindowTextW(pDoc->m_label.GetAt(2));
+	m_lblnomi.SetWindowTextW(pDoc->m_label.GetAt(5));
+	m_lblNomiE.SetWindowTextW(pDoc->m_label.GetAt(6));
+	m_btnAdd.SetMouseCursor(LoadCursor(NULL, IDC_HAND));
+	m_btnDel.SetMouseCursor(LoadCursor(NULL, IDC_HAND));
+	m_btnAssoc.SetMouseCursor(LoadCursor(NULL, IDC_HAND));
+	m_btnDis.SetMouseCursor(LoadCursor(NULL, IDC_HAND));
+	m_btnAssoc.SetTooltip(pDoc->m_label.GetAt(8));
+	m_btnDis.SetTooltip(pDoc->m_label.GetAt(9));
+}
 // Richiamo i nomi non associati ad un'etichetta
 void DlgGruppi::GetNomi()
 {
@@ -95,6 +118,10 @@ void DlgGruppi::SetEtichetta()
 {
 	CString lbl, buf = _T("");	
 	m_txtAdd.GetWindowTextW(lbl);
+	if (lbl == _T(""))
+		return;
+
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
 
 	// Caratteri speciali sostituiti con uno spazio
 	char specialChar[10] = "\"\\/:*|<>";
@@ -113,28 +140,43 @@ void DlgGruppi::SetEtichetta()
 	if (end == lbl.GetLength() - 1)
 		lbl.Delete(end, lbl.GetLength() - 1);
 
-	m_sql.Format(_T("INSERT INTO [ETICHETTE](NOME) VALUES('%ws')"), lbl.GetString());
+	m_sql.Format(_T("INSERT INTO [ETICHETTE](NOME) VALUES('%s')"), lbl.GetString());
 	
 	if (!dbconfig.SetSerie(m_sql))
 		return;
 	
-	m_nomi.Add(lbl);
-	m_cmbLabel.AddString(m_nomi.GetAt(m_nomi.GetCount()-1));
+	pMain->GetGruppi();
+	m_cmbLabel.ResetContent();
+	for (int j = 0; j < pMain->m_i; j++)
+		m_cmbLabel.AddString(pMain->m_lbl[j].nome);
+
+	m_cmbLabel.SetCurSel(0);
 }
 
 // Elimino un'etichetta
 void DlgGruppi::DelEtichetta()
 {
-	CString buf, msg = _T("");
+	CString buf, msg,temp = _T("");
 	m_cmbLabel.GetWindowTextW(buf);
-	msg.Format(_T("Vuoi davvero eliminare l'etichetta: %s"), buf.GetString());
+	msg.Format(pDoc->m_label.GetAt(7) + L"?", buf.GetString());
 	if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING) == IDNO)
 		return;
 	
-	m_sql.Format(_T("DELETE FROM [ETICHETTE] WHERE NOME='%s'"), buf.GetString());
+	m_sql.Format(_T("DELETE FROM [ETICHETTE] WHERE IDL=%d"), m_id);
 	if (!dbconfig.SetSerie(m_sql))
 		return;
-	m_cmbLabel.DeleteString(m_cmbLabel.GetCurSel());
+	
+	m_sql.Format(_T("UPDATE %s SET IDL=0 WHERE IDL=%d"), pDoc->m_tabella.GetString(), m_id);
+	if (!dbconfig.SetSerie(m_sql))
+		return;
+
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	pMain->GetGruppi();
+	m_cmbLabel.ResetContent();
+	for (int j = 0; j < pMain->m_i; j++)
+		m_cmbLabel.AddString(pMain->m_lbl[j].nome);
+
+	m_cmbLabel.SetCurSel(0);
 }
 
 
@@ -146,13 +188,17 @@ void DlgGruppi::OnCambioLabel()
 		return;
 
 	m_cmbLabel.GetLBText(nsel, buf);
-	m_explode = buf.Tokenize(_T("°"), m_pos);
-	m_id = _wtoi(buf);
-	id.Format(_T("%d"), m_id);
-	m_txtId.SetWindowTextW(id);
-	m_pos = 0;
-	pDoc = GetDoc();
 	m_lstAss.DeleteAllItems();
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
+	for (int j = 0; j < pMain->m_i; j++)
+	{
+		if (pMain->m_lbl[j].nome == buf)
+		{
+			id.Format(_T("%d"), pMain->m_lbl[j].id);
+			m_txtId.SetWindowTextW(id);
+			m_id = _wtoi(id);
+		}
+	}
 	for (int i = 0; i < pDoc->m_gridCount; i++)
 	{
 		if (pDoc->m_griglia[i].idl == m_id)
@@ -166,9 +212,7 @@ void DlgGruppi::OnCambioLabel()
 // Associa nome selezionato ad un' etichetta
 void DlgGruppi::OnSetAssoc()
 {
-	pDoc = GetDoc();
 	int item = 0;
-	
 	POSITION pos = m_lstNomi.GetFirstSelectedItemPosition();
 	item = m_lstNomi.GetNextSelectedItem(pos);
 	if (item == -1)
@@ -188,9 +232,7 @@ void DlgGruppi::OnSetAssoc()
 // Dissocio un nome da un'etichetta
 void DlgGruppi::OnDelAssoc()
 {
-	pDoc = GetDoc();
 	int item = 0;
-
 	POSITION pos = m_lstAss.GetFirstSelectedItemPosition();
 	item = m_lstAss.GetNextSelectedItem(pos);
 	if (item == -1)
