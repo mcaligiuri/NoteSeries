@@ -201,6 +201,11 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 			// Memorizzo anche il numero di elementi
 			pDoc->m_gridCount = pList->GetItemCount();
 			pDoc->m_griglia = new CNoteSeriesDoc::Griglia[pDoc->m_gridCount];
+			CArray<int, int>idl;
+			for (int k = pDoc->m_gridCount; k > 0; k = k - 1)
+			{
+				idl.Add(pDoc->m_idl.GetAt(k));
+			}
 			for (int i = 0; i < pList->GetItemCount(); i++)
 			{
 				pDoc->m_griglia[i].nome = pList->GetItemText(i, 0);
@@ -212,7 +217,7 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				pDoc->m_griglia[i].priorità = pList->GetItemText(i, 6);
 				pDoc->m_griglia[i].stato = pList->GetItemText(i, 7);
 				pDoc->m_griglia[i].commento = pList->GetItemText(i, 8);
-				pDoc->m_griglia[i].idl = pDoc->m_idl.GetAt(i);
+				pDoc->m_griglia[i].idl = idl.GetAt(i);
 			}
 		}
 		else
@@ -287,14 +292,17 @@ void CDbConn::UpdateSerieSel(CString sql, CListCtrl *pList)
 				pDoc->m_griglia[i].priorità = pList->GetItemText(i, 6);
 				pDoc->m_griglia[i].stato = pList->GetItemText(i, 7);
 				pDoc->m_griglia[i].commento = pList->GetItemText(i, 8);
-				pDoc->m_griglia[i].idl = pDoc->m_idl.GetAt(i);
 			}
 		}
 		righe->Close();
 		delete righe;
 		serie->Close();
 	}
-	catch (CDBException* e) { AfxMessageBox(_T("Database error: ") + e->m_strError); }
+	catch (CDBException* e) 
+	{
+		AfxMessageBox(_T("Database error: ") + e->m_strError); 
+		serie->Close();
+	}
 }
 
 // Prendo i dati della seria selezionata in griglia
@@ -469,33 +477,6 @@ int CDbConn::ContaOmonimi(CString nome, CString tabella, short cat)
 	}
 
 	return count;
-}
-
-void CDbConn::GetGruppi(CArray<CString, CString> *pStruct)
-{
-	dbopen();
-	try
-	{
-		CString sql,id,nome,buf = _T("");
-		sql.Format(_T("SELECT * FROM [ETICHETTE]"));
-		CRecordset righe(serie);
-		righe.Open(CRecordset::forwardOnly, sql);
-		while (!righe.IsEOF())
-		{
-			righe.GetFieldValue(L"NOME", nome);
-			righe.GetFieldValue(L"IDL", id);
-			pStruct->Add(id + L"° " + nome);
-			righe.MoveNext();
-		}
-		righe.Close();
-		serie->Close();
-	}
-	catch (CDBException* e)
-	{
-		AfxMessageBox(_T("Database error: ") + e->m_strError);
-		serie->Close();
-		return;
-	}
 }
 
 CNoteSeriesDoc* CDbConn::GetDoc()
