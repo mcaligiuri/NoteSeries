@@ -30,10 +30,8 @@ CAggMod::~CAggMod()
 void CAggMod::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
-
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
+	
+	pDoc = GetDoc();
 
 	DDX_Control(pDX, IDC_COMBOSTATO, m_dlgstato);
 	DDX_Control(pDX, IDC_PRIORITA, m_dlgpriorita);
@@ -53,8 +51,6 @@ void CAggMod::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDITCOMMENTO, pDoc->m_com);
 	DDX_Text(pDX, IDC_EDITSITO, pDoc->m_sito);
 	DDX_Text(pDX, IDC_EDITBMP, pDoc->m_bmp);
-
-	//DDX_Control(pDX, IDC_OUTPUT, m_output);
 
 	// Label
 	DDX_Control(pDX, IDC_LABEL, m_dlgLabel);
