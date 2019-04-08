@@ -33,7 +33,6 @@ private:
 public:
 	CString m_temp;			// Ritorno per la GetDesc
 	CString m_sql;			// Per le query SQL
-	CString m_explode;
 	CString m_selNome;		// Nome elemento selezionato
 	int m_pos;
 	short m_rows;			// Numero di righe
@@ -41,16 +40,18 @@ public:
 public:
 	virtual BOOL OnInitDialog();
 	afx_msg void SetEtichetta();
-	CArray<CString, CString>m_nomi;	// Lista nomi
 	afx_msg void DelEtichetta();
 private:
-	// Id di una label
-	CEdit m_txtId;
+	CEdit m_txtId;	// Id di una label
 public:
 	afx_msg void OnCambioLabel();
 	afx_msg void OnSetAssoc();
 	afx_msg void OnDelAssoc();
 	void GetNomi();
+	void GetDescUpdate();
 	CNoteSeriesDoc* GetDoc();
 	CNoteSeriesDoc* pDoc;
+	CStatic m_lblSel;
+	CStatic m_lblnomi;
+	CStatic m_lblNomiE;
 };
