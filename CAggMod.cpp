@@ -20,6 +20,7 @@ CAggMod::CAggMod(CWnd* pParent /*=nullptr*/)
 	len = 255;
 	width = 60;
 	height = 60;
+	pDoc = nullptr;
 }
 
 CAggMod::~CAggMod()
@@ -89,10 +90,7 @@ END_MESSAGE_MAP()
 BOOL CAggMod::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
+	pDoc = GetDoc();
 	// Popolo la combo dei voti
 	CString voto = _T("-");
 	short flag = 0;
@@ -129,12 +127,17 @@ BOOL CAggMod::OnInitDialog()
 				  // ECCEZIONE: le pagine delle proprietà OCX devono restituire FALSE
 }
 
+// Puntatore al documento
+CNoteSeriesDoc* CAggMod::GetDoc()
+{
+	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;		
+	CNoteSeriesView* pView = (CNoteSeriesView*)pMain->GetActiveView();
+	CNoteSeriesDoc* pDoc = pView->GetDocument();
+
+	return pDoc;
+}
 void CAggMod::GetDescUpdate()
 {
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
-
 	// Combo dello stato
 	m_dlgstato.ResetContent();
 	m_dlgstato.AddString(pDoc->m_stati.GetAt(0));
@@ -194,10 +197,7 @@ void CAggMod::OnBnClickedBtnapricartella()
 void CAggMod::SerieSelezionata(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
-
+	
 	// Puntatore a picture control
 	CStatic *pctrl = NULL;
 	pctrl = (CStatic *)GetDlgItem(IDC_ICONSERIES);
@@ -321,9 +321,6 @@ void CAggMod::GetCartella()
 	if (!(m_dlgChkCartella.GetCheck()))
 		return;
 
-	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
-	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();
 	char specialChar[10] = "\"\\/:*|<>";
 	CString buf = _T("");
 	if (chiave.Open(HKEY_CURRENT_USER, _T("Software\\MC SOFTWARE\\Note Series\\Path")))
@@ -349,7 +346,7 @@ void CAggMod::GetCartella()
 		pDoc->m_nome.Delete(idc, pDoc->m_cartella.GetLength() - 1);
 
 	//Costruisco il percorso
-	path.Format(_T("%s\\%s"), relPath, pDoc->m_cartella);
+	path.Format(_T("%s\\%s"), relPath.GetString(), pDoc->m_cartella.GetString());
 
 	// Creo la directory
 	if (!(CreateDirectoryEx(relPath, path, 0)))
@@ -364,8 +361,6 @@ void CAggMod::AggiungiSerie()
 {
 	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
 	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();
-
 	// Assegno contenuto controlli a variabili del documento
 	// le variabili del documento verranno usate nella query sql
 	m_frmnome.GetWindowText(pDoc->m_nome);
@@ -438,7 +433,7 @@ void CAggMod::AggiungiSerie()
 		// Costruisco la query
 		m_sql.Format
 		(L"INSERT INTO %s(nome, cartella, inizio, fine, stato, voto, commenti, sito, bitmap, IDCAT) VALUES('%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%d')",
-			pDoc->m_tabella, pDoc->m_nome, pDoc->m_cartella, pDoc->m_inizio, pDoc->m_fine, m_sel, m_votosel, pDoc->m_com, pDoc->m_sito, pDoc->m_bmp, pDoc->m_cat);
+			pDoc->m_tabella.GetString(), pDoc->m_nome.GetString(), pDoc->m_cartella.GetString(), pDoc->m_inizio.GetString(), pDoc->m_fine.GetString(), m_sel, m_votosel, pDoc->m_com.GetString(), pDoc->m_sito.GetString(), pDoc->m_bmp.GetString(), pDoc->m_cat);
 	}
 	else
 	{
@@ -473,7 +468,7 @@ void CAggMod::AggiungiSerie()
 
 		m_sql.Format
 		(L"INSERT INTO %s (nome, stato, commenti, priorità, IDCAT) VALUES('%s', '%d', '%s', '%d', '%d')",
-			pDoc->m_tabella, pDoc->m_nome, stato, pDoc->m_com, prior, pDoc->m_cat);
+			pDoc->m_tabella.GetString(), pDoc->m_nome.GetString(), stato, pDoc->m_com.GetString(), prior, pDoc->m_cat);
 	}
 
 	// Eseguo la query e aggiorno le viste
@@ -496,8 +491,6 @@ void CAggMod::ModificaSerie()
 {
 	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
 	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
-
 	// CATEGORIA
 	CString CurrTab, tmp = _T("");			// Tab corrente e variabile di appoggio
 
@@ -581,7 +574,8 @@ void CAggMod::ModificaSerie()
 
 		// Costruisco la query
 		m_sql.Format(L"UPDATE [anime] SET nome='%s', cartella ='%s', inizio ='%s', fine ='%s', stato =%d, voto =%d, commenti ='%s', sito ='%s', bitmap ='%s' WHERE ida=%d",
-			pDoc->m_nome, pDoc->m_cartella, pDoc->m_inizio, pDoc->m_fine, m_sel, m_selv, pDoc->m_com, pDoc->m_sito, pDoc->m_bmp, m_ida);
+			pDoc->m_nome.GetString(), pDoc->m_cartella.GetString(), pDoc->m_inizio.GetString(), 
+			pDoc->m_fine.GetString(), m_sel, m_selv, pDoc->m_com.GetString(), pDoc->m_sito.GetString(), pDoc->m_bmp.GetString(), m_ida);
 
 		// Provo a creare la cartella
 		if (pDoc->m_cartella != _T("") && m_dlgChkCartella.GetCheck())
@@ -621,7 +615,7 @@ void CAggMod::ModificaSerie()
 
 		// Costruisco la query
 		m_sql.Format(L"UPDATE [da vedere] SET nome='%s', stato =%d, priorità=%d, commenti ='%s' WHERE idv=%d AND IDCAT=%d", 
-					pDoc->m_nome, m_sel, m_pri, pDoc->m_com, m_ida, pDoc->m_cat);
+					pDoc->m_nome.GetString(), m_sel, m_pri, pDoc->m_com.GetString(), m_ida, pDoc->m_cat);
 
 		// Eseguo la query e aggiorno le viste
 		if (!(dbconfig.SetSerie(m_sql)))
@@ -641,7 +635,6 @@ void CAggMod::OnCbnSelchangeCombostato()
 {
 	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
 	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
 	CButton* rdov = (CButton *)pView->GetDlgItem(IDC_RDOVISTE);
 	CButton* rdof = (CButton *)pView->GetDlgItem(IDC_RDOFUTURE);
 	
@@ -724,8 +717,6 @@ void CAggMod::OnBnClickedBtnreset()
 {
 	CMainFrame *pMain = (CMainFrame *)AfxGetApp()->m_pMainWnd;				// Puntatore alla mainframe
 	CNoteSeriesView *pView = (CNoteSeriesView *)pMain->GetActiveView();		// Puntatore alla vista principale
-	CNoteSeriesDoc* pDoc = pView->GetDocument();							// Puntatore al documento
-
 	// Pulizia griglia e caselle di testo
 
 	m_frmnome.SetWindowTextW(_T(""));
