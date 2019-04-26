@@ -32,6 +32,7 @@
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Dynamic</UseOfMfc>
+    <CLRSupport>false</CLRSupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -93,6 +94,8 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>K:\redist\C++_MFC\Note Series;libxl-3.8.2.0\include_cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAsManaged>false</CompileAsManaged>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -196,6 +199,7 @@
     <ClInclude Include="DlgDate.h" />
     <ClInclude Include="DlgGruppi.h" />
     <ClInclude Include="DlgOptions.h" />
+    <ClInclude Include="DlgPdf.h" />
     <ClInclude Include="DlgPrimoAvvio.h" />
     <ClInclude Include="DlgRiconoscimenti.h" />
     <ClInclude Include="DlgVersioni.h" />
@@ -219,6 +223,7 @@
     <ClCompile Include="DlgDate.cpp" />
     <ClCompile Include="DlgGruppi.cpp" />
     <ClCompile Include="DlgOptions.cpp" />
+    <ClCompile Include="DlgPdf.cpp" />
     <ClCompile Include="DlgPrimoAvvio.cpp" />
     <ClCompile Include="DlgRiconoscimenti.cpp" />
     <ClCompile Include="DlgVersioni.cpp" />
