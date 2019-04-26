@@ -1,4 +1,4 @@
-#import "K:\redist\C#\PdfClient\bin\Debug\PdfClient.tlb" no_namespace
+#import "PdfClient.tlb" no_namespace
 #pragma once
 
 
@@ -39,19 +39,38 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	void GetDescUpdate();
+	void GetList();
+	void SvuotaVariabili();
+	void SetButton();
 	CNoteSeriesDoc* GetDoc();
 	CNoteSeriesDoc* pDoc;
 	CString m_temp;
 private:
-	CStatic m_lblTitle;	// Titolo finestra
-	CButton m_btnCrea;	// Bottone che crea pdf
-	CButton m_btnCanc;	// Chiude la finestra
+	CStatic m_lblTitle;		// Titolo finestra
+	CMFCButton m_btnCrea;	// Bottone che crea pdf
+	CMFCButton m_btnCanc;	// Chiude la finestra
 public:
 	afx_msg void Annulla();
 	afx_msg void SetPdf();
 private:
-	// Etichetta nome
-	CStatic m_lblNome;
-	// Casella di testo per inserire il nome del pdf
-	CEdit m_txtNome;
+	CStatic m_lblNome;		// Etichetta nome
+	CEdit m_txtNome;		// Casella di testo per inserire il nome del pdf
+	CMFCButton m_btnApriPdf;// Apre il pdf selezionato
+	CMFCButton m_btnApriDir;// Apre la cartella dei pdf
+	CListBox m_lstPdf;		// Lista dei pdf
+	CMFCButton m_btnElimina;// Elimino pdf selezionato
+public:
+	afx_msg void ApriCartellaPdf();
+	afx_msg void ApriPdf();
+private:
+	CEdit m_txtRen;			// Casella che permette di rinominare un file pdf
+	CMFCButton m_btnRin;	// Bottone per rinominare
+	CFont* m_pBtnFont;
+	CFont* m_SizeTitle;
+public:
+	afx_msg void GetChange();
+	afx_msg void EliminaPdf();
+	afx_msg void RinominaPdf();
+	afx_msg void OnDoubleClick();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); // Metodo da ridefinire per cambiare il colore alle label
 };
