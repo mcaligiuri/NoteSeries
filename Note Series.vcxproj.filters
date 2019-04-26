@@ -78,6 +78,9 @@
     <ClInclude Include="DlgGruppi.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="DlgPdf.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Note Series.cpp">
@@ -135,6 +138,9 @@
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="DlgGruppi.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgPdf.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
