@@ -271,6 +271,10 @@
     <None Include="res\ribbon.mfcribbon-ms" />
     <None Include="res\ribbon1.mfcribbon-ms" />
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="english.lib" />
+    <Library Include="italian.lib" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

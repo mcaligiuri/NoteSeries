@@ -228,4 +228,8 @@
       <Filter>File di risorse</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Library Include="italian.lib" />
+    <Library Include="english.lib" />
+  </ItemGroup>
 </Project>
