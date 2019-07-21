@@ -119,15 +119,15 @@ CNoteSeriesDoc* DlgPdf::GetDoc()
 void DlgPdf::GetDescUpdate()
 {
 	// Label
-	m_lblNome.SetWindowTextW(m_currlang.GetDesc(38, m_temp));
-	m_lblTitle.SetWindowTextW(m_currlang.GetDesc(185, m_temp));
+	m_lblNome.SetWindowTextW(m_currlang.GetDesc(37, m_temp));
+	m_lblTitle.SetWindowTextW(m_currlang.GetDesc(184, m_temp));
 	// Bottoni
-	m_btnCrea.SetWindowTextW(m_currlang.GetDesc(186, m_temp));
-	m_btnApriPdf.SetWindowTextW(m_currlang.GetDesc(187, m_temp));
-	m_btnApriDir.SetWindowTextW(m_currlang.GetDesc(97, m_temp));
-	m_btnCanc.SetWindowTextW(m_currlang.GetDesc(14, m_temp));
-	m_btnElimina.SetWindowTextW(m_currlang.GetDesc(43, m_temp));
-	m_btnRin.SetWindowTextW(m_currlang.GetDesc(86, m_temp));
+	m_btnCrea.SetWindowTextW(m_currlang.GetDesc(185, m_temp));
+	m_btnApriPdf.SetWindowTextW(m_currlang.GetDesc(186, m_temp));
+	m_btnApriDir.SetWindowTextW(m_currlang.GetDesc(96, m_temp));
+	m_btnCanc.SetWindowTextW(m_currlang.GetDesc(13, m_temp));
+	m_btnElimina.SetWindowTextW(m_currlang.GetDesc(42, m_temp));
+	m_btnRin.SetWindowTextW(m_currlang.GetDesc(85, m_temp));
 }
 
 // Aggiorno listbox coi pdf
@@ -200,7 +200,7 @@ void DlgPdf::SetPdf()
 		if (!client->SendGridViste((_bstr_t)m_nome, (_bstr_t)m_cartella, (_bstr_t)m_inizio, (_bstr_t)m_fine, (_bstr_t)m_stato, 
 			(_bstr_t)m_sito, (_bstr_t)m_voto, (_bstr_t)m_commento, (_bstr_t)retLang, (_bstr_t)npdf))
 		{
-			AfxMessageBox(m_currlang.GetDesc(188,m_temp));
+			AfxMessageBox(m_currlang.GetDesc(187,m_temp));
 			SvuotaVariabili();
 			CoUninitialize();
 			return;
@@ -210,7 +210,7 @@ void DlgPdf::SetPdf()
 	{
 		if (!client->SendGridFuture((_bstr_t)m_nome, (_bstr_t)m_stato, (_bstr_t)m_priorità, (_bstr_t)m_commento, (_bstr_t)retLang, (_bstr_t)npdf))
 		{
-			AfxMessageBox(m_currlang.GetDesc(188, m_temp));
+			AfxMessageBox(m_currlang.GetDesc(187, m_temp));
 			SvuotaVariabili();
 			CoUninitialize();
 			return;
@@ -224,7 +224,7 @@ void DlgPdf::SetPdf()
 	// Elimino file remoto
 	if (!client->DeleteMyFile((_bstr_t)npdf + L".pdf"))
 	{
-		AfxMessageBox(m_currlang.GetDesc(188, m_temp));
+		AfxMessageBox(m_currlang.GetDesc(187, m_temp));
 		CoUninitialize();
 		SvuotaVariabili();
 		return;
@@ -234,7 +234,7 @@ void DlgPdf::SetPdf()
 	// Svuoto variabili dopo averle utilizzate
 	SvuotaVariabili();
 	
-	AfxMessageBox(m_currlang.GetDesc(35,m_temp),MB_OK | MB_ICONINFORMATION);
+	AfxMessageBox(m_currlang.GetDesc(34,m_temp),MB_OK | MB_ICONINFORMATION);
 	CoUninitialize();
 	GetList();
 }
@@ -279,7 +279,7 @@ void DlgPdf::RinominaPdf()
 	if (_wrename(retPath + L"\\PDF\\" + oldName, retPath + L"\\PDF\\" + newName) != 0)
 	{
 		CString error = _T("");
-		error.Format((m_currlang.GetDesc(92, m_temp)), errno);
+		error.Format((m_currlang.GetDesc(91, m_temp)), errno);
 		AfxMessageBox(error);
 		return;
 	}
@@ -291,12 +291,12 @@ void DlgPdf::EliminaPdf()
 {
 	CString pdf = _T("");
 	m_txtRen.GetWindowTextW(pdf);
-	if (AfxMessageBox(m_currlang.GetDesc(89, m_temp), MB_YESNO) == IDNO)
+	if (AfxMessageBox(m_currlang.GetDesc(88, m_temp), MB_YESNO) == IDNO)
 		return;
 
 	if (!DeleteFile(retPath + L"\\PDF\\" + pdf))
 	{
-		AfxMessageBox((m_currlang.GetDesc(90, m_temp)));
+		AfxMessageBox((m_currlang.GetDesc(89, m_temp)));
 		return;
 	}
 	GetList();

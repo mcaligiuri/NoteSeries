@@ -67,8 +67,8 @@ BOOL DlgGruppi::OnInitDialog()
 	pDoc->m_nodo = pDoc->m_artitoli.GetAt(1); // Ordine alfabetico
 	pDoc->UpdateAllViews(NULL);
 	// Imposto le colonne
-	m_lstNomi.InsertColumn(0, m_currlang.GetDesc(38, m_temp), LVCFMT_CENTER, 150);
-	m_lstAss.InsertColumn(0, m_currlang.GetDesc(38, m_temp), LVCFMT_CENTER, 150);
+	m_lstNomi.InsertColumn(0, m_currlang.GetDesc(37, m_temp), LVCFMT_CENTER, 150);
+	m_lstAss.InsertColumn(0, m_currlang.GetDesc(37, m_temp), LVCFMT_CENTER, 150);
 
 	// Popolo combobx delle etichette
 	CMainFrame* pMain = (CMainFrame*)AfxGetApp()->m_pMainWnd;
