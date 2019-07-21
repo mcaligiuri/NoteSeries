@@ -1,15 +1,13 @@
 #include "stdafx.h"
 #include "CLanguage.h"
-#include "CDbConn.h"
 
 CLanguage m_currlang;
+extern "C" _declspec(dllimport) CString SetDesc(int iddescr);
+extern "C" _declspec(dllimport) CString SetDescEng(int iddescr);
 
 CLanguage::CLanguage()
 {
 	retStr =_T("");
-	sql = _T("");
-	m_dbfLang = _T("");
-	m_db = _T("");
 }
 
 
@@ -17,7 +15,7 @@ CLanguage::~CLanguage()
 {
 }
 
-BOOL CLanguage::dbopen()
+/*BOOL CLanguage::dbopen()
 {
 	if (!chiave.Open(HKEY_CURRENT_USER, _T("Software\\MC SOFTWARE\\Note Series\\Path")))
 	{
@@ -37,15 +35,11 @@ BOOL CLanguage::dbopen()
 		return FALSE;
 	}
 	return TRUE;
-}
+}*/
 
 // A seconda della chiave di registro prendo la traduzione
-CString CLanguage::GetDesc(long iddescr, CString temp)
-{
-	CRegKey chiave;
-	ULONG len = 10;
-
-	if (!dbopen())
+CString CLanguage::GetDesc(int iddescr, CString temp) {
+	/*if (!dbopen())
 	{
 		AfxMessageBox(_T("Error: database not found in "+ retUser + " the program will be close."));
 		PostQuitMessage(0);
@@ -79,5 +73,16 @@ CString CLanguage::GetDesc(long iddescr, CString temp)
 			AfxMessageBox(_T("Database error: ") + e->m_strError);
 		}
 	}
-	return temp;
+	return temp;*/
+	CRegKey chiave;
+	ULONG len = 10;
+	if (!chiave.Open(HKEY_CURRENT_USER, _T("Software\\MC SOFTWARE\\Note Series\\Settings"))) {
+		chiave.QueryStringValue(_T("Lingua"), retStr.GetBufferSetLength(len), &len);
+		retStr.ReleaseBuffer();
+		if (retStr == _T("ITALIANO"))
+			return SetDesc(iddescr);
+
+		else
+			return SetDescEng(iddescr);
+	}
 }
