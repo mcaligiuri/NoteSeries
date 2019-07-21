@@ -1,13 +1,10 @@
 #pragma once
-class CLanguage: public CDbConn
+class CLanguage
 {
 public:
 	CLanguage();
-	CString GetDesc(long iddescr, CString temp);
-	CString retStr, sql;
-	BOOL dbopen() override;
-	CDatabase language; // Oggetto databsse
-	CString m_db;		// Stringa di connessione coi parametri
+	CString GetDesc(int iddescr, CString temp);
+	CString retStr;
 	~CLanguage();
 };
 
