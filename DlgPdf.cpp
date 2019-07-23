@@ -206,10 +206,8 @@ void DlgPdf::SetPdf()
 			return;
 		}
 	}
-	else
-	{
-		if (!client->SendGridFuture((_bstr_t)m_nome, (_bstr_t)m_stato, (_bstr_t)m_priorità, (_bstr_t)m_commento, (_bstr_t)retLang, (_bstr_t)npdf))
-		{
+	else {
+		if (!client->SendGridFuture((_bstr_t)m_nome, (_bstr_t)m_stato, (_bstr_t)m_priorità, (_bstr_t)m_commento, (_bstr_t)retLang, (_bstr_t)npdf)) {
 			AfxMessageBox(m_currlang.GetDesc(187, m_temp));
 			SvuotaVariabili();
 			CoUninitialize();
@@ -239,8 +237,7 @@ void DlgPdf::SetPdf()
 	GetList();
 }
 
-void DlgPdf::SvuotaVariabili()
-{
+void DlgPdf::SvuotaVariabili() {
 	m_nome = _T("");
 	m_cartella = _T("");
 	m_inizio = _T("");
@@ -255,16 +252,16 @@ void DlgPdf::SvuotaVariabili()
 
 
 // Apro pdf selezionato in lista
-void DlgPdf::ApriPdf()
-{
+void DlgPdf::ApriPdf() {
 	CString pdf = _T("");
 	m_txtRen.GetWindowTextW(pdf);
 	ShellExecute(NULL, L"open", retPath + L"\\PDF\\" + pdf, NULL, NULL, SW_SHOWMAXIMIZED);
 }
 
 // Rinomino pdf
-void DlgPdf::RinominaPdf()
-{
+void DlgPdf::RinominaPdf() {
+	if (m_lstPdf.GetCurSel() < 1)
+		return;
 	CString newName,oldName = _T("");
 	m_lstPdf.GetText(m_lstPdf.GetCurSel(), oldName);
 	m_txtRen.GetWindowTextW(newName);
@@ -276,8 +273,7 @@ void DlgPdf::RinominaPdf()
 	if (newName == oldName)
 		return;
 	
-	if (_wrename(retPath + L"\\PDF\\" + oldName, retPath + L"\\PDF\\" + newName) != 0)
-	{
+	if (_wrename(retPath + L"\\PDF\\" + oldName, retPath + L"\\PDF\\" + newName) != 0) {
 		CString error = _T("");
 		error.Format((m_currlang.GetDesc(91, m_temp)), errno);
 		AfxMessageBox(error);
@@ -287,15 +283,16 @@ void DlgPdf::RinominaPdf()
 }
 
 // Elimino pdf selezionato
-void DlgPdf::EliminaPdf()
-{
+void DlgPdf::EliminaPdf() {
+	if (m_lstPdf.GetCurSel() < 1)
+		return;
+
 	CString pdf = _T("");
 	m_txtRen.GetWindowTextW(pdf);
 	if (AfxMessageBox(m_currlang.GetDesc(88, m_temp), MB_YESNO) == IDNO)
 		return;
 
-	if (!DeleteFile(retPath + L"\\PDF\\" + pdf))
-	{
+	if (!DeleteFile(retPath + L"\\PDF\\" + pdf)) {
 		AfxMessageBox((m_currlang.GetDesc(89, m_temp)));
 		return;
 	}
@@ -304,9 +301,11 @@ void DlgPdf::EliminaPdf()
 
 
 // Cambio selezione nella listbox
-void DlgPdf::GetChange()
-{
+void DlgPdf::GetChange() {
 	int nsel = m_lstPdf.GetCurSel();
+	if (nsel < 1)
+		return;
+
 	CString buf = _T("");
 	m_lstPdf.GetText(nsel, buf);
 	m_txtRen.SetWindowTextW(buf);
@@ -326,8 +325,7 @@ HBRUSH DlgPdf::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
 
-	switch (nCtlColor)
-	{
+	switch (nCtlColor) {
 	case CTLCOLOR_STATIC:
 		pDC->SetTextColor(RGB(255, 255, 255));
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
