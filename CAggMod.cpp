@@ -167,7 +167,7 @@ void CAggMod::GetDescUpdate()
 	m_btnReset.SetWindowTextW(pDoc->m_form.GetAt(11));			// Bottone reset
 	m_dlgChkCartella.SetWindowTextW(pDoc->m_form.GetAt(12));	// Checkbox cartella
 	m_btnApri.SetWindowTextW(pDoc->m_form.GetAt(12));			// Bottone che apre la cartella
-	//m_btnCopiaURL.SetWindowTextW(pDoc->m_form.GetAt(13));		// Bottone che copia l'URL
+	m_btnCopiaURL.SetWindowTextW(pDoc->m_form.GetAt(13));		// Bottone che copia l'URL
 }
 
 // Imposto icone dei pulsanti
