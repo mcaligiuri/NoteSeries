@@ -523,7 +523,7 @@ void CAggMod::ModificaSerie()
 	if (idc == pDoc->m_nome.GetLength() - 1)
 		pDoc->m_nome.Delete(idc, pDoc->m_nome.GetLength() - 1);
 
-	if (!(AfxMessageBox(m_currlang.GetDesc(8, temp), MB_YESNO) == IDYES))
+	if (!(AfxMessageBox(m_currlang.GetDesc(7, temp), MB_YESNO) == IDYES))
 		return;
 
 	if (pDoc->m_tabella == _T("[anime]"))
@@ -731,7 +731,7 @@ void CAggMod::OnBnClickedBtnreset()
 	pctrl->Invalidate();
 
 	// Label informativa
-	m_dlgLabel.SetWindowTextW(m_currlang.GetDesc(5, temp));
+	m_dlgLabel.SetWindowTextW(m_currlang.GetDesc(4, temp));
 	m_dlgLabel.EnableWindow(1);
 
 	// Pulsanti
