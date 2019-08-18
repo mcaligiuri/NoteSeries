@@ -1,4 +1,5 @@
 #import "PdfClient.tlb" no_namespace
+//#import "K:\redist\C#\PdfClient\bin\Debug\PdfClient.tlb" no_namespace
 #pragma once
 
 
