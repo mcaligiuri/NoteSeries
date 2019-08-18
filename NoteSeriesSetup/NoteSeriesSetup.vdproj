@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_0D977F047F964EAC9D7D868CF1683A3E"
+        "MsmKey" = "8:_106F691DEC1347CD8396E0C5AA2142B6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_106F691DEC1347CD8396E0C5AA2142B6"
+        "MsmKey" = "8:_15D071CF0EE24384A846B56A725D1543"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,19 +33,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_17886E9C05E5456EB7DC87990D2ABC45"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_25A1538E51D449089BC7DB628DBCCDFD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2C06CF6CF3784843B72FEA02FFA4128A"
+        "MsmKey" = "8:_2884E42282C7495398AA5440D49E6449"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2C17B880A4784F1BB882F702907116D7"
+        "MsmKey" = "8:_2C06CF6CF3784843B72FEA02FFA4128A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -63,7 +69,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_32990D31583B44278E470D594AE09431"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3A0EFE9A4B644D16AEEB56F006B9931A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_45D2B424A38F429CA7A2C579F843278F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -82,12 +100,6 @@
         "Entry"
         {
         "MsmKey" = "8:_5E0E38593755408F809D744ED9B27608"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_61B7C6F49C3D4F629EC5436217C00199"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -117,12 +129,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B0950E4F5FC40CEA31F34FCA6FFF661"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_8C070A7A4DD24C08B0E529174EBFCBDA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,13 +141,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_98851BEF0AF2492CBCC0FD1CCACEA9A8"
+        "MsmKey" = "8:_9D2CA6FD41A346C0966623358DF3EBCD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9D2CA6FD41A346C0966623358DF3EBCD"
+        "MsmKey" = "8:_A0E5BD650B874081A1B10ECFF2299BF3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A27DAAC4359644479ECF4386599AFD1D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -165,6 +177,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C1D62119DA0648BBA08369409A2AE705"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CA9E24A0D8A0C80959AF42CF0B3136A9"
+        "OwnerKey" = "8:_A27DAAC4359644479ECF4386599AFD1D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CC2FB222DD374185BF568132F1E1FFCA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -183,13 +207,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D746DAAA60534D129EF79F7DF100E9CA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DC22E64238CF4C4CAD9827CD4C59056C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_DE090F06E5374E228E2F8B72C2015BBD"
+        "MsmKey" = "8:_E0C0F7F21E754C089EFABCE88BC840BD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -203,6 +233,12 @@
         {
         "MsmKey" = "8:_FA11046D3B6741E8867C181DCB12C05D"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A27DAAC4359644479ECF4386599AFD1D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -293,6 +329,14 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_D55307048FCC478687AC5937BE4148ED"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "FrameworkVersion" = "8:ANY"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
+                }
             }
         }
         "File"
@@ -323,6 +367,26 @@
             "TargetName" = "8:Toolbar256.bmp"
             "Tag" = "8:"
             "Folder" = "8:_29A5AA6C75314393A0FDAA391D5AD4AB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17886E9C05E5456EB7DC87990D2ABC45"
+            {
+            "SourcePath" = "8:..\\italian.dll"
+            "TargetName" = "8:italian.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_566E61743C274303929F630EE56CF5E9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -417,12 +481,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_32990D31583B44278E470D594AE09431"
+            {
+            "SourcePath" = "8:..\\english.lib"
+            "TargetName" = "8:english.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_566E61743C274303929F630EE56CF5E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3A0EFE9A4B644D16AEEB56F006B9931A"
             {
             "SourcePath" = "8:..\\res\\filesmall.bmp"
             "TargetName" = "8:filesmall.bmp"
             "Tag" = "8:"
             "Folder" = "8:_29A5AA6C75314393A0FDAA391D5AD4AB"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_45D2B424A38F429CA7A2C579F843278F"
+            {
+            "SourcePath" = "8:..\\english.dll"
+            "TargetName" = "8:english.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_566E61743C274303929F630EE56CF5E9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -617,12 +721,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_98851BEF0AF2492CBCC0FD1CCACEA9A8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D2CA6FD41A346C0966623358DF3EBCD"
             {
-            "SourcePath" = "8:..\\Archivi\\language.mdb"
-            "TargetName" = "8:language.mdb"
+            "SourcePath" = "8:..\\res\\filelarge.bmp"
+            "TargetName" = "8:filelarge.bmp"
             "Tag" = "8:"
-            "Folder" = "8:_52C98C25010649F39F845B49F3E822F0"
+            "Folder" = "8:_29A5AA6C75314393A0FDAA391D5AD4AB"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -637,12 +741,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9D2CA6FD41A346C0966623358DF3EBCD"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A27DAAC4359644479ECF4386599AFD1D"
             {
-            "SourcePath" = "8:..\\res\\filelarge.bmp"
-            "TargetName" = "8:filelarge.bmp"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:PdfClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A27DAAC4359644479ECF4386599AFD1D"
+                    {
+                    "Name" = "8:PdfClient.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\PdfClient.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_29A5AA6C75314393A0FDAA391D5AD4AB"
+            "Folder" = "8:_566E61743C274303929F630EE56CF5E9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -695,6 +810,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C1D62119DA0648BBA08369409A2AE705"
+            {
+            "SourcePath" = "8:..\\italian.lib"
+            "TargetName" = "8:italian.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_566E61743C274303929F630EE56CF5E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CA9E24A0D8A0C80959AF42CF0B3136A9"
+            {
+            "SourcePath" = "8:PdfClient.tlb"
+            "TargetName" = "8:PdfClient.tlb"
+            "Tag" = "8:"
+            "Folder" = "8:_566E61743C274303929F630EE56CF5E9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:2"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC2FB222DD374185BF568132F1E1FFCA"
@@ -929,7 +1084,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Note Series"
         "ProductCode" = "8:{1A560206-1B91-42BC-B2E9-3741053639BD}"
-        "PackageCode" = "8:{925D9371-A363-4EDA-A9A8-EBF165F7551C}"
+        "PackageCode" = "8:{3FE1EDBE-69BE-4E1C-9501-F0566C2C5E6A}"
         "UpgradeCode" = "8:{F6E66CD5-25A9-4C91-A3A4-35EAE40DA80B}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -1567,11 +1722,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_0D977F047F964EAC9D7D868CF1683A3E"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_15D071CF0EE24384A846B56A725D1543"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.20.27508\\MergeModules\\Microsoft_VC141_MFCLOC_x86.msm"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.21.27702\\MergeModules\\Microsoft_VC142_CXXAMP_x86.msm"
                 "Properties"
                 {
                 }
@@ -1581,11 +1736,11 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_2C17B880A4784F1BB882F702907116D7"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_2884E42282C7495398AA5440D49E6449"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.20.27508\\MergeModules\\Microsoft_VC141_MFC_x86.msm"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.21.27702\\MergeModules\\Microsoft_VC142_CRT_x86.msm"
                 "Properties"
                 {
                 }
@@ -1595,11 +1750,11 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_61B7C6F49C3D4F629EC5436217C00199"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_A0E5BD650B874081A1B10ECFF2299BF3"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.20.27508\\MergeModules\\Microsoft_VC141_CRT_x86.msm"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.21.27702\\MergeModules\\Microsoft_VC142_OpenMP_x86.msm"
                 "Properties"
                 {
                 }
@@ -1609,11 +1764,11 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_7B0950E4F5FC40CEA31F34FCA6FFF661"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_D746DAAA60534D129EF79F7DF100E9CA"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.20.27508\\MergeModules\\Microsoft_VC141_CXXAMP_x86.msm"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.21.27702\\MergeModules\\Microsoft_VC142_MFC_x86.msm"
                 "Properties"
                 {
                 }
@@ -1623,11 +1778,11 @@
             "Feature" = "8:"
             "IsolateTo" = "8:"
             }
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_DE090F06E5374E228E2F8B72C2015BBD"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_E0C0F7F21E754C089EFABCE88BC840BD"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:FALSE"
-            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.20.27508\\MergeModules\\Microsoft_VC141_OpenMP_x86.msm"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Redist\\MSVC\\14.21.27702\\MergeModules\\Microsoft_VC142_MFCLOC_x86.msm"
                 "Properties"
                 {
                 }
